@@ -14,7 +14,7 @@ export default function CreateTask({ navigation }: any) {
 
   const onPostTask = async () => {
     await postTask(task);
-    navigation.navigate("Home")
+    navigation.navigate("Home");
   };
 
   return (
