@@ -6,13 +6,16 @@ import ListTasks from "../components/ListTasks";
 
 export default function Home({ navigation }: any) {
   const [tasks, setTasks] = useState([]);
+
   const isFocused = useIsFocused();
 
   useEffect(() => {
-    (async () => {
-      const tasks = await getTasks();
-      setTasks(tasks);
-    })();
+    if(isFocused){
+      (async () => {
+        const tasks = await getTasks();
+        setTasks(tasks);
+      })();
+    }
   }, [isFocused]);
 
   return (
