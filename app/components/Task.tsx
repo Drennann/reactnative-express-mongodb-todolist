@@ -6,15 +6,15 @@ import { ITask } from "../interfaces/interfaces";
 
 type RootStackParamList = {
   Home: undefined;
-  EditScreen: {initialTask: ITask};
+  EditScreen: { initialTask: ITask };
   CreateTaskScreen: undefined;
 };
 
 interface Props {
-  setTasks: Dispatch<SetStateAction<ITask[]>>
-  navigation: NativeStackNavigationProp<RootStackParamList, "Home", undefined>,
-  tasks: Array<ITask>,
-  task: ITask
+  setTasks: (arg: Array<ITask>) => void;
+  navigation: NativeStackNavigationProp<RootStackParamList, "Home", undefined>;
+  tasks: Array<ITask>;
+  task: ITask;
 }
 
 export default function Task({ task, navigation, setTasks, tasks }: Props) {
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     color: "#d0d0d0",
     fontSize: 24,
-    fontWeight:"600"
+    fontWeight: "600",
   },
   TaskCard__ButtonsSection: {
     display: "flex",
@@ -97,10 +97,10 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     elevation: 3,
     marginHorizontal: 5,
-    backgroundColor:"#673ab7"
+    backgroundColor: "#673ab7",
   },
-  TaskCard__ButtonsSection__Button__Text:{
-    color:"#d0d0d0",
-    fontWeight:"500"
-  }
+  TaskCard__ButtonsSection__Button__Text: {
+    color: "#d0d0d0",
+    fontWeight: "500",
+  },
 });

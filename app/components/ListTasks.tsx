@@ -2,7 +2,6 @@ import { View } from "react-native";
 import Task from "./Task";
 import { ITask } from "../interfaces/interfaces";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Dispatch, SetStateAction } from "react"
 
 type RootStackParamList = {
   Home: undefined;
@@ -11,7 +10,7 @@ type RootStackParamList = {
 };
 
 interface Props {
-  setTasks: Dispatch<SetStateAction<ITask[]>>
+  setTasks: (arg: Array<ITask>) => void
   navigation: NativeStackNavigationProp<RootStackParamList, "Home", undefined>,
   tasks: Array<ITask>
 }
