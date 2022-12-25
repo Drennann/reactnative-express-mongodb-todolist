@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, StyleSheet, TextInput, Button } from "react-native";
+import { View, StyleSheet, TextInput, Pressable, Text } from "react-native";
 import { putTask } from "../api";
 
 export default function EditScreen({ route, navigation }: any) {
@@ -22,15 +22,28 @@ export default function EditScreen({ route, navigation }: any) {
   return (
     <View style={styles.container}>
       <TextInput
+      style={styles.EditTask_TextInput}
         defaultValue={initialTask.title}
+        multiline={true}
         onChange={(event) => onChangeHandler(event, "title")}
       />
       <TextInput
+      style={styles.EditTask_TextInput}
         defaultValue={initialTask.description}
+        multiline={true}
         onChange={(event) => onChangeHandler(event, "description")}
       />
-      <Button title="Volver" onPress={() => navigation.navigate("Home")} />
-      <Button title="Aceptar" onPress={onPutTask} />
+      <View style={styles.EditTask__ButtonsSection}>
+        <Pressable
+          style={styles.EditTask_Button}
+          onPress={() => navigation.navigate("Home")}
+        >
+          <Text style={styles.EditTask_Button_Text}>Volver</Text>
+        </Pressable>
+        <Pressable style={styles.EditTask_Button} onPress={onPutTask}>
+          <Text style={styles.EditTask_Button_Text}>Aceptar</Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
@@ -45,5 +58,32 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#d0d0d0",
+  },
+  EditTask__ButtonsSection: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  EditTask_Button: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 8,
+    marginVertical: 16,
+    minWidth: 80,
+    borderRadius: 4,
+    elevation: 3,
+    marginHorizontal: 5,
+    backgroundColor:"#673ab7",
+    paddingHorizontal: 8,
+  },
+  EditTask_Button_Text: {
+    color:"#d0d0d0",
+    fontWeight:"500"
+  },
+  EditTask_TextInput: {
+    backgroundColor: "white",
+    width: 200,
+    marginVertical: 8,
+    minHeight: 40,
   },
 });
