@@ -1,15 +1,30 @@
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { Dispatch, SetStateAction } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { deleteTask } from "../api";
+import { ITask } from "../interfaces/interfaces";
 
-export default function Task({ task, navigation, setTasks, tasks }: any) {
+type RootStackParamList = {
+  Home: undefined;
+  EditScreen: {initialTask: ITask};
+  CreateTaskScreen: undefined;
+};
+
+interface Props {
+  setTasks: Dispatch<SetStateAction<ITask[]>>
+  navigation: NativeStackNavigationProp<RootStackParamList, "Home", undefined>,
+  tasks: Array<ITask>,
+  task: ITask
+}
+
+export default function Task({ task, navigation, setTasks, tasks }: Props) {
   const onEditTask = () => {
     navigation.navigate("EditScreen", { initialTask: task });
   };
 
   const onDeleteTask = () => {
-    //delete task and go to Home Screen
     deleteTask(task._id);
-    const newTasks = tasks.filter((arg: { _id: any }) => arg._id !== task._id);
+    const newTasks = tasks.filter((arg: ITask) => arg._id !== task._id);
     setTasks(newTasks);
   };
   return (

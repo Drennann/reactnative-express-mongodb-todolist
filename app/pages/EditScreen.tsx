@@ -1,9 +1,20 @@
 import { useState } from "react";
 import { View, StyleSheet, TextInput, Pressable, Text } from "react-native";
 import { putTask } from "../api";
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import {ITask} from "../interfaces/interfaces"
 
-export default function EditScreen({ route, navigation }: any) {
-  const { initialTask, setTasks } = route.params;
+type RootStackParamList = {
+  Home: undefined;
+  EditScreen: {initialTask: ITask};
+  CreateTaskScreen: undefined;
+};
+
+
+type Props = NativeStackScreenProps<RootStackParamList, 'EditScreen'>;
+
+export default function EditScreen({ route, navigation }: Props) {
+  const initialTask  = route.params.initialTask;
 
   const [task, setTask] = useState({
     title: initialTask.title,

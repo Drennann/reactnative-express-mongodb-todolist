@@ -1,8 +1,17 @@
 import { View, StyleSheet, TextInput, Pressable, Text } from "react-native";
 import { useState } from "react";
 import { postTask } from "../api";
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-export default function CreateTask({ navigation }: any) {
+type RootStackParamList = {
+  Home: undefined;
+  EditScreen: undefined;
+  CreateTaskScreen: undefined;
+};
+
+type Props = NativeStackScreenProps<RootStackParamList, 'CreateTaskScreen'>;
+
+export default function CreateTask({ navigation }: Props) {
   const [task, setTask] = useState({
     title: "",
     description: "",
