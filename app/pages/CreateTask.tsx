@@ -22,7 +22,11 @@ export default function CreateTask({ navigation }: Props) {
   };
 
   const onPostTask = async () => {
-    await postTask(task);
+    try{
+      await postTask(task);
+    }catch(error){
+      console.log(error)
+    }
     navigation.navigate("Home");
   };
 

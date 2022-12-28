@@ -1,5 +1,4 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Dispatch, SetStateAction } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { deleteTask } from "../api";
 import { ITask } from "../interfaces/interfaces";
@@ -23,7 +22,11 @@ export default function Task({ task, navigation, setTasks, tasks }: Props) {
   };
 
   const onDeleteTask = () => {
-    deleteTask(task._id);
+    try{
+      deleteTask(task._id);
+    }catch(error){
+      console.log(error)
+    }
     const newTasks = tasks.filter((arg: ITask) => arg._id !== task._id);
     setTasks(newTasks);
   };
